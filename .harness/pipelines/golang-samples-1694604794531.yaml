@@ -1,0 +1,40 @@
+pipeline:
+  identifier: Build_golang_samples_1694604813867
+  name: Build golang-samples
+  orgIdentifier: default
+  projectIdentifier: Default_Project_1666328521750
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github
+        repoName: arjunksofficial/golang-samples
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: gobuild
+                  name: go_build
+                  spec:
+                    command: go build
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: gotest
+                  name: go_test
+                  spec:
+                    command: go test -v ./...
+                  timeout: ""
+                  type: Run
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI

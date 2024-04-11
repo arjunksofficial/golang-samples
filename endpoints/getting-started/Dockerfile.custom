@@ -1,4 +1,4 @@
-FROM golang:onbuild
+FROM golang:1.21.9-bookworm
 EXPOSE 8080
 ENV PORT 8080
 ENTRYPOINT ["go-wrapper", "run"]
